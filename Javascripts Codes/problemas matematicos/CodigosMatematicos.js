@@ -69,6 +69,7 @@ function Fibonacci(numero){
     z = x + y;
     y = x;
     x = z;
+    
     arrFibo.push(z);
   }
   mostrarEnTabla(arrFibo);
@@ -89,6 +90,16 @@ function mostrarEnTabla(arrFibo) {
   arrFibo.forEach(numero => {
     let columna = document.createElement('td');
     columna.textContent = numero;
+    if (esPrimo(numero)) {
+      columna.classList.add("primo");
+    }
+    if (numero % 2 === 0) {
+      columna.classList.add("par");
+    }
+    // Verificar si el número es tanto primo como par
+    if (esPrimo(numero) && numero % 2 === 0) {
+      columna.classList.add("primo", "par");
+    }
     fila.appendChild(columna);
     contador++;
 
