@@ -27,8 +27,7 @@
     
     <h1>Serie Fibonacci</h1>
     <form id="serieFibonacci">
-      <label for="numeroCiclos">Ingresa el número de ciclos:</label>
-      <p>Los numero pares se pondran de color azul y los primos de verde</p>
+      <label for="numeroCiclos">Ingresa el número de ciclos. el maximo aceptado es 100 ciclos:</label>
       <input type="number" id="numeroCiclos" />
       <button type="submit">Generar Serie Fibonacci</button>
     </form>
@@ -41,7 +40,23 @@
       </table>
     </div>
     
-
+    <div id="resultadoSeriePrima"></div>
+    
+    <h1>Serie de numeros primos</h1>
+    <form id="seriePrima">
+      <label for="numeroCiclos">Ingresa hasta que numero verificar la serie</label>
+      <p>el numero maximo aceptado es 100000</p>
+      <input type="number" id="numeroMaxPrimo" />
+      <button type="submit">Generar Serie Prima</button>
+    </form>
+    
+    <div id="resultadoSeriePrimaContainer">
+      <table id="resultadoPrimos">
+        <tr>
+          <td></td>
+        </tr>
+      </table>
+    </div>
   <script src="CodigosMatematicos.js"></script>
 </body>
 </html>

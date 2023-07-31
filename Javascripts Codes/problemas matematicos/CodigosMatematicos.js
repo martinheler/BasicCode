@@ -16,6 +16,13 @@ document.getElementById('serieFibonacci').addEventListener('submit', function (e
   Fibonacci(numeroIngresado);
 });
 
+document.getElementById('seriePrima').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const numeroIngresado = parseInt(document.getElementById('numeroMaxPrimo').value);
+  Primos(numeroIngresado);
+});
+
+
 function verificarNumeroPar(numero) {
   if (isNaN(numero)) {
     resultadoPar.textContent = 'Por favor, ingresa un número válido.';
@@ -65,18 +72,40 @@ function Fibonacci(numero){
   let y = 1;
   let arrFibo = [];
 
+  if(numero>100){
+    alert("Numero excede el limite establecido, por favor reduzca el numero");
+    return null;
+  }else if(numero < 0){
+    alert("No se aceptan numero negativos, por favor corrija el numero");
+    return null;
+  }
   for (let i = 1; i <= numero; i++){
     z = x + y;
     y = x;
     x = z;
-    
     arrFibo.push(z);
   }
-  mostrarEnTabla(arrFibo);
+  mostrarEnTabla(arrFibo,'resultadoFibonacci');
 }
 
-function mostrarEnTabla(arrFibo) {
-  const tabla = document.getElementById('resultadoFibonacci');
+function Primos(numero){
+  if(numero>100000){
+    alert("Numero excede el limite establecido, por favor reduzca el numero");
+    return null;
+  }else if(numero < 0){
+    alert("No se aceptan numero negativos, por favor corrija el numero");
+    return null;
+  }
+  arrPrimo =[];
+  for (let i = 2; i <= numero; i++){
+   if(esPrimo(i)){
+    arrPrimo.push(i)
+   }
+  }
+  mostrarEnTabla(arrPrimo,'resultadoPrimos');
+}
+function mostrarEnTabla(arrNum,idName) {
+  const tabla = document.getElementById(idName);
 
   // Limpiar tabla existente
   while (tabla.firstChild) {
@@ -87,19 +116,10 @@ function mostrarEnTabla(arrFibo) {
   let fila = document.createElement('tr');
   let contador = 0;
 
-  arrFibo.forEach(numero => {
+  arrNum.forEach(numero => {
     let columna = document.createElement('td');
     columna.textContent = numero;
-    if (esPrimo(numero)) {
-      columna.classList.add("primo");
-    }
-    if (numero % 2 === 0) {
-      columna.classList.add("par");
-    }
-    // Verificar si el número es tanto primo como par
-    if (esPrimo(numero) && numero % 2 === 0) {
-      columna.classList.add("primo", "par");
-    }
+    
     fila.appendChild(columna);
     contador++;
 
